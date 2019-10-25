@@ -8,11 +8,7 @@ import (
 )
 
 var (
-	html  *template.Template
-	index = `{{define "length"}}
-	Length: {{.text}}
-	{{end}}	
-`
+	html  *template.Template`
 )
 
 func init() {
@@ -22,6 +18,9 @@ func init() {
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		text := r.FormValue("text")
+		index = `{{define "length"}}
+		Length: {{.text}}
+		{{end}}`	
 		htmlTwo, err := template.New("length").Parse(index)
 		if err != nil {
 			log.Fatal(err)
