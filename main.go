@@ -19,7 +19,7 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		text := r.FormValue("text")
 		if len(text) > 0 {
-			fmt.Fprintf(w, "Char Count: %d", len(countChars(text)))
+			fmt.Fprintf(w, "<h1 style=\"text-align: center;\">Char Count: %d</h1>", len(countChars(text)))
 		} else {
 			html.ExecuteTemplate(w, "index.html", nil)
 		}
