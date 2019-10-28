@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 	"strings"
+	"time"
 )
 
 var (
@@ -19,7 +20,8 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		text := r.FormValue("text")
 		if len(text) > 0 {
-			fmt.Fprintf(w, "<h1 style=\"text-align: center;\">Char Count: %d</h1>", len(countChars(text)))
+			startTime := time.Now()
+			fmt.Fprintf(w, "<h1 style=\"text-align: center;\">Counted %d Characters in %f Seconds</h1>", len(countChars(text)), time.Since(startTime).Seconds())
 		} else {
 			html.ExecuteTemplate(w, "index.html", nil)
 		}
