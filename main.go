@@ -21,7 +21,7 @@ func main() {
 		text := r.FormValue("text")
 		if len(text) > 0 {
 			startTime := time.Now()
-			fmt.Fprintf(w, "<h1 style=\"text-align: center;\">Counted %d Characters in %f Seconds</h1>", len(countChars(text)), time.Since(startTime).Seconds())
+			fmt.Fprintf(w, "<h1 style=\"text-align: center;\">Counted %d Characters in %fs</h1>", len(countChars(text)), time.Since(startTime).Seconds())
 		} else {
 			html.ExecuteTemplate(w, "index.html", nil)
 		}
